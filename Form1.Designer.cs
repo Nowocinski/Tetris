@@ -50,6 +50,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tetris";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Forma_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Forma_KeyDown);
             this.ResumeLayout(false);
 
         }

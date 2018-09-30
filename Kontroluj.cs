@@ -9,20 +9,22 @@ namespace Tetris
     static class Kontroluj
     {
         /* !!! */
-        public static bool CzyWDol;
+        public static int przesuniecie = 20;
+        public static bool czyWDol, czyWLewo, czyWPrawo;
 
-        public static bool WarunekSpadniecia(List<Kwadrat> k)
+        public static bool WarunekSpadniecia(List<Kwadrat> kwadrat, List<Kwadrat> bloki, int w)
         {
-            /* Dziwnie wygląda to 420 :/// */
-            foreach (Kwadrat item in k)
-                if (item.ZwracajY() > 420)
-                    return CzyWDol = false;
+            foreach (Kwadrat k in kwadrat)
+            {
+                if (k.ZwracajY() > w - 39)
+                    return czyWDol = false;
 
-            /* Kolejny warunek: Czy pod spodem jest obiekt z listy blok */
-            /* Jeśli tak: dodaj obiekty z listy kwadrat do listy blok */
-            /* i utwórz nową liste kwadrat */
+                foreach (Kwadrat b in bloki)
+                    if (k.ZwracajX() == b.ZwracajX() && k.ZwracajY() + przesuniecie == b.ZwracajY())
+                        return czyWDol = false;
+            }
 
-            return CzyWDol = true;
+            return czyWDol = true;
         }
 
         //public static void Sterowanie()
